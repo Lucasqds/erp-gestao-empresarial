@@ -1,0 +1,42 @@
+.menu-lateral {
+    width: 250px;
+    height: 100vh;
+    background-color: #f8f9fa; /* ✅ Cinza claro */
+    padding-top: 20px;
+    position: absolute;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estiliza os itens principais */
+  .list-group-item {
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease-in-out;
+    border: none;
+  }
+  
+  /* Efeito hover */
+  .list-group-item:hover {
+    background-color: #e9ecef; /* ✅ Cinza mais escuro ao passar o mouse */
+  }
+  
+  /* Submenu */
+  .submenu {
+    padding-left: 20px;
+    list-style: none;
+    margin: 0;
+  }
+  
+  .submenu .list-group-item {
+    font-weight: normal;
+    padding: 8px 15px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    margin-top: 5px;
+  }
+  
+  /* Efeito hover no submenu */
+  .submenu .list-group-item:hover {
+    background-color: #dee2e6; /* ✅ Cinza suave no hover */
+  }
+  

@@ -1,0 +1,81 @@
+<div class="container mt-4">
+  <h2>Cadastrar Fornecedor</h2>
+
+  <div class="card shadow-sm p-4 mt-4">
+    <form [formGroup]="fornecedorForm" (ngSubmit)="cadastrarFornecedor()">
+
+      <div class="form-group mb-3">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" formControlName="nome" class="form-control" placeholder="Nome do fornecedor">
+      </div>
+
+
+      <div class="form-group mb-3">
+        <label for="documento">Documento</label>
+        <input type="text" id="documento" formControlName="documento" class="form-control"
+          placeholder="Digite CPF ou CNPJ" (input)="documentoTouched = true" (blur)="onDocumentoBlur()" [maxlength]="18"
+          [value]="fornecedorForm.get('documento')?.value | cpfCnpj">
+        <div *ngIf="documentoTouched && fornecedorForm.get('documento')?.errors?.['documentoInvalido']"
+          class="text-danger">
+          Documento inválido. Digite um CPF ou CNPJ válido.
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-6">
+          <div class="form-group mb-3">
+            <label for="cep">CEP</label>
+            <input type="text" id="cep" formControlName="cep" class="form-control" placeholder="Digite o CEP"
+              (blur)="buscarCEP()" maxlength="9">
+            <div *ngIf="fornecedorForm.get('cep')?.invalid && fornecedorForm.get('cep')?.dirty" class="text-danger">
+              CEP inválido. Deve ter 8 dígitos.
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-6">
+          <div class="form-group mb-3">
+            <label for="estado">Estado</label>
+            <input type="text" id="estado" formControlName="estado" class="form-control" readonly>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="form-group mb-3">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" formControlName="email" class="form-control" placeholder="Digite o e-mail">
+        <div *ngIf="fornecedorForm.get('email')?.errors?.['emailInvalido']" class="text-danger">
+          E-mail inválido. Digite um endereço de e-mail válido.
+        </div>
+      </div>
+
+      <div *ngIf="isPessoaFisica" class="form-group mb-3">
+        <label for="rg">RG</label>
+        <input type="text" id="rg" formControlName="rg" class="form-control" placeholder="Digite o RG"
+          (input)="rgTouched = true" (blur)="rgTouched = true" maxlength="12"
+          [value]="fornecedorForm.get('rg')?.value | rg">
+        <div *ngIf="rgTouched && fornecedorForm.get('rg')?.errors?.['rgInvalido']" class="text-danger">
+          RG inválido. Deve ter 8 ou 9 dígitos.
+        </div>
+      </div>
+
+
+      <div *ngIf="isPessoaFisica" class="form-group mb-3">
+        <label for="dataNascimento">Data de Nascimento</label>
+        <input type="date" id="dataNascimento" formControlName="dataNascimento" class="form-control"
+          [attr.max]="maxDate" [attr.min]="minDate">
+        <div *ngIf="fornecedorForm.get('dataNascimento')?.errors?.['menorDeIdade']" class="text-danger">
+          Não é permitido cadastrar menores de idade no Paraná.
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block" [disabled]="fornecedorForm.invalid">
+        Cadastrar
+      </button>
+    </form>
+  </div>
+</div>

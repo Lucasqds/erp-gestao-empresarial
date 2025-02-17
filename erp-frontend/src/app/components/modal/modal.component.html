@@ -1,0 +1,13 @@
+<div *ngIf="isOpen" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ titulo }}</h5>
+        <button class="close-button" (click)="fecharModal()">✖</button>
+      </div>
+  
+      <div class="modal-body">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,56 @@
+<div class="container mt-4">
+
+    <button class="btn btn-secondary mb-3" (click)="voltar()">
+      <i class="bi bi-arrow-left"></i> Voltar
+    </button>
+  
+    <div class="card p-4 shadow-sm">
+      <div class="d-flex align-items-center">
+        <i class="bi bi-buildings display-4"></i>
+        <h2 class="ms-3">{{ empresa?.nomeFantasia }}</h2>
+      </div>
+  
+      <hr>
+  
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>CNPJ:</strong> {{ empresa?.cnpj | cnpj }}</p>
+        </div>
+  
+        <div class="col-md-6">
+          <p><strong>CEP:</strong> {{ empresa?.cep }}</p>
+        </div>
+      </div>
+  
+      <hr>
+  
+      <h4>Endereço</h4>
+      <div *ngIf="endereco">
+        <p><strong>Logradouro:</strong> {{ endereco.logradouro }}</p>
+        <p><strong>Bairro:</strong> {{ endereco.bairro }}</p>
+        <p><strong>Estado:</strong> {{ endereco.uf }}</p>
+      </div>
+  
+      <hr>
+  
+      <h4>Fornecedores Associados</h4>
+  
+      <table class="table table-striped mt-3" *ngIf="fornecedores.length > 0">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Documento</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let fornecedor of fornecedores">
+            <td>{{ fornecedor.nome }}</td>
+            <td>{{ fornecedor.documento }}</td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <p *ngIf="fornecedores.length === 0" class="text-muted">Nenhum fornecedor associado a esta empresa.</p>
+    </div>
+  </div>
+  

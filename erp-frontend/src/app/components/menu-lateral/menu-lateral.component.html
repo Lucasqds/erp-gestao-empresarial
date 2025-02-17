@@ -1,0 +1,28 @@
+<div class="menu-lateral">
+    <ul class="list-group">
+      <li class="list-group-item d-flex align-items-center" (click)="alternarSubMenu('empresas')">
+        <i class="bi bi-building me-2"></i> Gerenciar Empresas
+      </li>
+      <ul *ngIf="menuAtivo === 'empresas'" class="submenu">
+        <li class="list-group-item">
+          <a routerLink="/empresas" class="text-decoration-none">📋 Ver Empresas</a>
+        </li>
+        <li class="list-group-item">
+          <a routerLink="/empresas/cadastrar" class="text-decoration-none">➕ Adicionar Empresa</a>
+        </li>
+      </ul>
+  
+      <li class="list-group-item d-flex align-items-center" (click)="alternarSubMenu('fornecedores')">
+        <i class="bi bi-people me-2"></i> Gerenciar Fornecedores
+      </li>
+      <ul *ngIf="menuAtivo === 'fornecedores'" class="submenu">
+        <li class="list-group-item">
+          <a routerLink="/fornecedores" class="text-decoration-none">📋 Ver Fornecedores</a>
+        </li>
+        <li class="list-group-item">
+          <a routerLink="/fornecedores/cadastrar" class="text-decoration-none">➕ Adicionar Fornecedor</a>
+        </li>
+      </ul>
+    </ul>
+  </div>
+  

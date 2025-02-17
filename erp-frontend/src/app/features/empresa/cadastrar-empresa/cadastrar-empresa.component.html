@@ -1,0 +1,70 @@
+<div class="container mt-4">
+    <h2>Cadastrar Empresa</h2>
+
+    <div class="card shadow-sm p-4 mt-4">
+        <form [formGroup]="empresaForm" (ngSubmit)="cadastrarEmpresa()">
+            
+            <div class="form-group mb-3">
+                <label for="nomeFantasia">Nome Fantasia</label>
+                <input type="text" id="nomeFantasia" formControlName="nomeFantasia" class="form-control"
+                    placeholder="Nome da empresa">
+            </div>
+
+            
+            <div class="form-group mb-3">
+                <label for="cnpj">CNPJ</label>
+                <input type="text" id="cnpj" formControlName="cnpj" class="form-control" placeholder="CNPJ da empresa"
+                    maxlength="18" (input)="formatarCNPJ($event)" [value]="empresaForm.get('cnpj')?.value | cpfCnpj">
+                <div *ngIf="empresaForm.get('cnpj')?.invalid && empresaForm.get('cnpj')?.dirty" class="text-danger">
+                    CNPJ inválido. Deve ter 14 dígitos.
+                </div>
+
+            </div>
+
+            
+            <div class="form-group mb-3">
+                <label for="cep">CEP</label>
+                <input type="text" id="cep" formControlName="cep" class="form-control" placeholder="CEP da empresa"
+                    maxlength="9" (input)="formatarCEP($event)" (blur)="validarCEP()"
+                    [value]="empresaForm.get('cep')?.value | cep">
+                <div *ngIf="empresaForm.get('cep')?.errors?.['cepInvalido']" class="text-danger">
+                    CEP inválido. Verifique e tente novamente.
+                </div>
+
+
+            </div>
+
+            <hr>
+
+            
+            <h4>Fornecedores Disponíveis</h4>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Documento</th>
+                        <th>CEP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let fornecedor of fornecedores">
+                        <td>
+                            <input type="checkbox" (change)="toggleFornecedor(fornecedor.id, $event)">
+                        </td>
+                        <td>{{ fornecedor.nome }}</td>
+                        <td>{{ fornecedor.email }}</td>
+                        <td>{{ fornecedor.documento | cpfCnpj }}</td>
+                        <td>{{ fornecedor.cep | cep }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <button type="submit" class="btn btn-primary btn-block mt-3" [disabled]="empresaForm.invalid">
+                Cadastrar
+            </button>
+
+        </form>
+    </div>
+</div>

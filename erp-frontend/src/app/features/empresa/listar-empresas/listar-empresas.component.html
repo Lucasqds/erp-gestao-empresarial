@@ -1,0 +1,29 @@
+<div class="container mt-4">
+  <h2>Lista de Empresas</h2>
+
+  <div class="card shadow-sm p-4 mt-4">
+    <table class="table table-hover mt-3">
+      <thead>
+        <tr>
+          <th>Nome Fantasia</th>
+          <th>CNPJ</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let empresa of empresasFiltradas" (click)="verEmpresa(empresa)">
+          <td>{{ empresa.nomeFantasia }}</td>
+          <td>{{ empresa.cnpj | cnpj }}</td>
+          <td>
+            <button class="btn btn-outline-primary btn-sm" (click)="gerenciarEmpresa(empresa, $event)">
+              <i class="bi bi-pencil"></i>
+            </button>
+            <button class="btn btn-outline-danger btn-sm ms-2" (click)="excluirEmpresa(empresa, $event)">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

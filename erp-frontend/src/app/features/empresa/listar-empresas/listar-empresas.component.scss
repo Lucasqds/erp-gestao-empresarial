@@ -1,0 +1,8 @@
+table tbody tr {
+  cursor: pointer; 
+  transition: background-color 0.3s ease-in-out;
+}
+
+table tbody tr:hover {
+  background-color: #d1e7fd !important; /* 🌟 Cor azul clara para destacar */
+}
